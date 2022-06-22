@@ -7,6 +7,32 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  var userQuestion = '';
+  var userAnswer = '';
+
+  final List<String> buttons = [
+    'C',
+    'DEL',
+    '%',
+    '/',
+    '7',
+    '8',
+    '9',
+    'x'
+    '4',
+    '5',
+    '6',
+    '-',
+    '1',
+    '2',
+    '3',
+    '+',
+    '0',
+    '.',
+    'ANS',
+    '='
+  ];
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
