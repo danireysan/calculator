@@ -1,5 +1,6 @@
 import 'package:calculator/widgets/calc_button.dart';
 import 'package:flutter/material.dart';
+import 'package:math_expressions/math_expressions.dart';
 
 void main() {
   runApp(const MyApp());
@@ -56,25 +57,53 @@ class _MyHomePageState extends State<MyHomePage> {
     'ANS',
     '='
   ];
+
+  void equalPressed() {
+    String finalQuestion = userQuestion;
+    finalQuestion = finalQuestion.replaceAll("x", "*");
+    finalQuestion = finalQuestion.replaceAll("%", "*0.01");
+
+    Parser p = Parser();
+    Expression exp = p.parse(finalQuestion);
+    ContextModel cm = ContextModel();
+    double eval = exp.evaluate(EvaluationType.REAL, cm);
+
+    userAnswer = eval.toString();
+  }
+
+  bool isOperator(String x) {
+    if (x == '%' || x == '/' || x == "x" || x == '-' || x == '+' || x == '=') {
+      return true;
+    }
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.deepPurple[100],
       body: Column(
         children: [
           GridView.builder(
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 4,
             ),
             itemCount: buttons.length,
             itemBuilder: (BuildContext context, int index) {
               return CalcButton(
-                color: Colors.purple,
-                textColor: Colors.black,
+                color: isOperator(buttons[index])
+                    ? Colors.deepPurple
+                    : Colors.deepPurple[50]!,
+                textColor: isOperator(buttons[index])
+                    ? Colors.white
+                    : Colors.deepPurple,
                 buttonText: buttons[index],
                 buttonTapped: () {
-
+                  setState(() {
+                    userQuestion += buttons[index];
+                  });
                 },
               );
             },

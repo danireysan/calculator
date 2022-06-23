@@ -4,7 +4,7 @@ class CalcButton extends StatelessWidget {
   final Color color;
   final Color textColor;
   final String buttonText;
-  final buttonTapped;
+  final Function() buttonTapped;
 
   const CalcButton({
     Key? key,
