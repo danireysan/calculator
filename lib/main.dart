@@ -1,5 +1,6 @@
 import 'package:calculator/widgets/calc_button.dart';
 import 'package:flutter/material.dart';
+
 import 'package:math_expressions/math_expressions.dart';
 
 void main() {
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Calculator',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -82,33 +83,102 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.deepPurple[100],
-      body: Column(
-        children: [
-          GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4,
+      body: SafeArea(
+        child: Column(
+          children: [
+            Expanded(
+              child: Column(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(20),
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      userQuestion,
+                      style: const TextStyle(
+                        fontSize: 30,
+                        color: Colors.deepPurple
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(20),
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      userAnswer,
+                      style: const TextStyle(
+                        fontSize: 30,
+                        color: Colors.deepPurple
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
-            itemCount: buttons.length,
-            itemBuilder: (BuildContext context, int index) {
-              return CalcButton(
-                color: isOperator(buttons[index])
-                    ? Colors.deepPurple
-                    : Colors.deepPurple[50]!,
-                textColor: isOperator(buttons[index])
-                    ? Colors.white
-                    : Colors.deepPurple,
-                buttonText: buttons[index],
-                buttonTapped: () {
-                  setState(() {
-                    userQuestion += buttons[index];
-                  });
-                },
-              );
-            },
-          ),
-        ],
+            GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 4,
+              ),
+              itemCount: buttons.length,
+              itemBuilder: (BuildContext context, int index) {
+                if (index == 0) {
+                  return CalcButton(
+                    color: Colors.green,
+                    textColor: Colors.white,
+                    buttonText: buttons[index],
+                    buttonTapped: () {
+                      setState(() {
+                        userAnswer = "";
+                        userQuestion = "";
+                      });
+                    },
+                  );
+                }
+                if (index == 1) {
+                  return CalcButton(
+                    color: Colors.red,
+                    textColor: Colors.white,
+                    buttonText: buttons[index],
+                    buttonTapped: () {
+                      setState(() {
+                        userQuestion =
+                            userQuestion.substring(0, userQuestion.length - 1);
+                      });
+                    },
+                  );
+                }
+                if (index == buttons.length - 1) {
+                  return CalcButton(
+                    color: Colors.deepPurple,
+                    textColor: Colors.white,
+                    buttonText: buttons[index],
+                    buttonTapped: () {
+                      setState(() {
+                  
+                        equalPressed();
+                      });
+                    },
+                  );
+                }
+                return CalcButton(
+                  color: isOperator(buttons[index])
+                      ? Colors.deepPurple
+                      : Colors.deepPurple[50]!,
+                  textColor: isOperator(buttons[index])
+                      ? Colors.white
+                      : Colors.deepPurple,
+                  buttonText: buttons[index],
+                  buttonTapped: () {
+                    setState(() {
+                      userQuestion += buttons[index];
+                    });
+                  },
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
