@@ -1,3 +1,4 @@
+import 'package:calculator/widgets/calc_button.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -41,8 +42,8 @@ class _MyHomePageState extends State<MyHomePage> {
     '7',
     '8',
     '9',
-    'x'
-        '4',
+    'x',
+    '4',
     '5',
     '6',
     '-',
@@ -58,17 +59,27 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GridView.builder(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
-        ),
-        itemCount: buttons.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Container(
-            
-            child: Text("AS"),
-          );
-        },
+      body: Column(
+        children: [
+          GridView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 4,
+            ),
+            itemCount: buttons.length,
+            itemBuilder: (BuildContext context, int index) {
+              return CalcButton(
+                color: Colors.purple,
+                textColor: Colors.black,
+                buttonText: buttons[index],
+                buttonTapped: () {
+
+                },
+              );
+            },
+          ),
+        ],
       ),
     );
   }
