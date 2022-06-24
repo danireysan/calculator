@@ -8,6 +8,8 @@
 .buildlog/
 .history
 .svn/
+UsersUSER_NAMEupload-keystore.jks
+UsersUSER_NAMEupload-keystore.jks.old
 
 # IntelliJ related
 *.iml
