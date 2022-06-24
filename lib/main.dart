@@ -73,7 +73,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   bool isOperator(String x) {
-    if (x == '%' || x == '/' || x == "x" || x == '-' || x == '+' || x == '=') {
+    bool isStrigEqual2 = x == '%' || x == '/' || x == "x" || x == '-' || x == '+' || x == '=';
+    if (isStrigEqual2) {
       return true;
     }
     return false;
