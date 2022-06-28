@@ -87,7 +87,6 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: Colors.deepPurple[100],
       body: SafeArea(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Expanded(
               child: Column(
@@ -176,6 +175,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
                   padding: EdgeInsets.all(8),
@@ -188,7 +188,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 8),
+                  padding: EdgeInsets.symmetric(vertical: 8) + EdgeInsets.only(right: 12),
                   child: Image.asset(
                     'assets/clawsie_yeet.png',
                     height: 12,
