@@ -45,10 +45,10 @@ dev_dependencies:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/icon.png"
+  image_path: "assets/calc.png"
 flutter_native_splash:
   color: "#ece4f4"
-  image: assets/icon.png
+  image: assets/calc.png
 
 
   # The "flutter_lints" package below contains a set of recommended lints to

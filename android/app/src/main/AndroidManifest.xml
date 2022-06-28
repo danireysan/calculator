@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.danielreynososanchez.capycalc">
    <application
-        android:label="calculator"
+        android:label="Capycalc"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
