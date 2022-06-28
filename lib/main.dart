@@ -73,7 +73,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   bool isOperator(String x) {
-    bool isStrigEqual2 = x == '%' || x == '/' || x == "x" || x == '-' || x == '+' || x == '=';
+    bool isStrigEqual2 =
+        x == '%' || x == '/' || x == "x" || x == '-' || x == '+' || x == '=';
     if (isStrigEqual2) {
       return true;
     }
@@ -86,6 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: Colors.deepPurple[100],
       body: SafeArea(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Expanded(
               child: Column(
@@ -96,9 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Text(
                       userQuestion,
                       style: const TextStyle(
-                        fontSize: 30,
-                        color: Colors.deepPurple
-                      ),
+                          fontSize: 30, color: Colors.deepPurple),
                     ),
                   ),
                   Container(
@@ -107,9 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Text(
                       userAnswer,
                       style: const TextStyle(
-                        fontSize: 30,
-                        color: Colors.deepPurple
-                      ),
+                          fontSize: 30, color: Colors.deepPurple),
                     ),
                   )
                 ],
@@ -156,7 +154,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     buttonText: buttons[index],
                     buttonTapped: () {
                       setState(() {
-                  
                         equalPressed();
                       });
                     },
@@ -178,6 +175,27 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               },
             ),
+            Row(
+              children: [
+                Container(
+                  padding: EdgeInsets.all(8),
+                  child: Text(
+                    "Art By",
+                    style: const TextStyle(
+                        fontSize: 12,
+                        color: Colors.deepPurple,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 8),
+                  child: Image.asset(
+                    'assets/clawsie_yeet.png',
+                    height: 12,
+                  ),
+                ),
+              ],
+            )
           ],
         ),
       ),
