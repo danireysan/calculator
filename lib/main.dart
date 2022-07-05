@@ -35,6 +35,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   var userQuestion = '';
   var userAnswer = '';
+  bool isOperatorActive = false;
 
   final List<String> buttons = [
     'C',
@@ -167,9 +168,19 @@ class _MyHomePageState extends State<MyHomePage> {
                       : Colors.deepPurple,
                   buttonText: buttons[index],
                   buttonTapped: () {
-                    setState(() {
-                      userQuestion += buttons[index];
-                    });
+                    if (isOperator(buttons[index]) == isOperatorActive) {
+                      setState(() {
+                        if (isOperator(buttons[index])) {
+                          userQuestion += buttons[index];
+                        }
+                        isOperatorActive = !isOperatorActive;
+                      });
+                    }
+                    if (!isOperator(buttons[index])) {
+                      setState(() {
+                        userQuestion += buttons[index];
+                      });
+                    }
                   },
                 );
               },
@@ -188,7 +199,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 8) + EdgeInsets.only(right: 12),
+                  padding: EdgeInsets.symmetric(vertical: 8) +
+                      EdgeInsets.only(right: 12),
                   child: Image.asset(
                     'assets/clawsie_yeet.png',
                     height: 12,
